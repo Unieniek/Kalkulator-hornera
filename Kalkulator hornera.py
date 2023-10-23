@@ -30,13 +30,20 @@ print(f"Dzielniki wyrazu wolnego to: {dzielniki}")
 l = 0
 for i in range(0, len(dzielniki)):
     a = dzielniki[i]*wspolczyniki[0]
-    wyrazy.append(f"{wspolczyniki[0]}x^{power-1}")
+    if wspolczyniki[0]!=1:
+        wyrazy.append(f"{wspolczyniki[0]}x^{power-1}")
+    else:
+        wyrazy.append(f"x^{power-1}")
     for j in range(1, len(wspolczyniki)):
         a += wspolczyniki[j]
         if j < (len(wspolczyniki)-1):
             if j < (power-1):
-                if a!=0:
-                    wyrazy.append(f"{a}x^{(power-1) - j}")
+                if ((power-1) - j) > 1:
+                    if a!=0:
+                        wyrazy.append(f"{a}x^{(power-1) - j}")
+                else:
+                    if a!=0:
+                        wyrazy.append(f"{a}x")
             else:
                 if a != 0:
                     wyrazy.append(f"{a}")
@@ -48,10 +55,11 @@ for i in range(0, len(dzielniki)):
                 l = 0
                 if dzielniki[i]>0:
                     wyrazystr = ") + (".join(str(element) for element in wyrazy)
-                    print(f"Podzielność przez (x + {dzielniki[i]}): [({wyrazystr})]")
+                    print(f"Podzielność przez (x - {dzielniki[i]}): [({wyrazystr})]")
                 else:
                     wyrazystr = ") + (".join(str(element) for element in wyrazy)
-                    print(f"Podzielność przez (x - {-dzielniki[i]}): [({wyrazystr})]")
+                    print(f"Podzielność przez (x + {-dzielniki[i]}): [({wyrazystr})]")
+
                 wyrazy.clear()
             else:
                 #print(f"jest niepodzielne przez: {dzielniki[i]}")
