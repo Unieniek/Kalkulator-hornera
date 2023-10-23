@@ -28,5 +28,7 @@ for i in range(0, len(dzielniki)):
                 podzielne.append(a)
             else:
                 print(f"jest niepodzielne przez: {dzielniki[i]}")
-            
+
 print(f"podzielne przez: {podzielne}")
+
+print("siema")
