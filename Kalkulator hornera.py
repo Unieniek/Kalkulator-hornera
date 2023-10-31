@@ -45,7 +45,7 @@ else:
             dividers.append(i)
             dividers.append(-i)
 
-print(f"Dzielniki wyrazu wolnego to: {dividers}")
+print(f"Dividers of a free expression are: {dividers}")
 #add variable to determnine length of a list
 l = 0
 #check every object in dzielniki
@@ -94,10 +94,10 @@ for i in range(0, len(dividers)):
                 l = 0
                 if dividers[i]>0:
                     wyrazystr = "".join(str(element) for element in equations)
-                    print(f"Równanie to: (x - {dividers[i]}): ({wyrazystr})")
+                    print(f"Final equation is: (x - {dividers[i]})*({wyrazystr})")
                 else:
                     wyrazystr = "".join(str(element) for element in equations)
-                    print(f"Równanie to: (x + {-dividers[i]}): ({wyrazystr})")
+                    print(f"Final equation is: (x + {-dividers[i]})*({wyrazystr})")
 
                 equations.clear()
             else:
@@ -106,6 +106,6 @@ for i in range(0, len(dividers)):
                 equations.clear()
 
 if dividable == []:
-    print("Wielomian jest niepodzielny przez liczbę całkowitą")
+    print("Polynomial is not dividable by a whole number")
 else:
-    print(f"podzielne przez: {dividable}")
+    print(f"Polynomial is dividable by: {dividable}")
