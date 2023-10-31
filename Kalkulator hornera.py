@@ -1,9 +1,9 @@
 import math
-coef = [] #współczynniki
-dividers = [] #dzielniki
-dividable = [] #podzielne
-equations = [] #wyrazy
-power = input("Input highest power besides 'x': ") #potęga
+coef = []#współczynniki
+dividers = []#dzielniki
+dividable = []#podzielne
+equations = []#wyrazy
+power = input("Input highest power besides 'x': ")#potęga
 
 def get_super(x):
     normal = "0123456789"
@@ -11,29 +11,46 @@ def get_super(x):
     res = x.maketrans(''.join(normal), ''.join(super_s))
     return x.translate(res)
 
-def isint(arg, string):
+#def for checking if input is a number or negative
+def isint(arg, string, cantminus):
     try:
         arg = int(arg)
         return arg
     except:
         while arg.isdigit() == False:
-            print("Your input is not a number")
-            arg = input(string)
+            if cantminus == False:
+                print("Your input is not a number")
+                arg = input(string)
+                try:
+                    arg = int(arg)
+                    return arg
+                except:
+                    continue
+            else:
+                print("Your input is not a number or is a number below zero")
+                arg = input(string)
         arg = int(arg)
         return arg
+power = isint(power, "Input highest power besides 'x': ", True )
 
-power = isint(power, "Input highest power besides 'x': " )
-
+#input for every part of equation
 for i in range (0, power+1):
-    if ((power)-i)>0:
-        var = input(f"Input a number next to x{get_super(str((power)-i))} : ")
-        var = isint(var, f"Input a number next to x{get_super(str((power)-i))} : ")
+    if ((power)-i)>1:
+        var = input(f"Input a number next to x{get_super(str((power)-i))}: ")
+        var = isint(var, f"Input a number next to x{get_super(str((power)-i))}: ", False)
         coef.append(int(var))
+
+    elif ((power)-i)==1:
+        var = input(f"Input a number next to x: ")
+        var = isint(var, f"Input a number next to x: ", False)
+        coef.append(int(var))
+
     else:
         var = input("Input free expression: ")
-        var = isint(var, "Input free expression: ")
+        var = isint(var, "Input free expression: ", False)
         coef.append(int(var))
 
+#collecting dividers
 if coef[-1]>0:
     for i in range(1, coef[-1] + 1):
         if coef[-1]%i == 0:
@@ -46,7 +63,7 @@ else:
             dividers.append(-i)
 
 print(f"Dividers of a free expression are: {dividers}")
-#add variable to determnine length of a list
+#add variable to determine length of a list
 l = 0
 #check every object in dzielniki
 for i in range(0, len(dividers)):
